@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2019-01-24T00:00:00+00:00</updated><subtitle>Data Science Blog</subtitle><entry><title>I know all the words</title><link href="/word-master.html" rel="alternate"></link><published>2019-01-24T00:00:00+00:00</published><updated>2019-01-24T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-01-24:/word-master.html</id><content type="html">&lt;style type="text/css"&gt;/*!
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer - misc</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-01-28T00:00:00+00:00</updated><subtitle>Data Science Blog</subtitle><entry><title>Hello world</title><link href="https://davebloomer.github.io/hello-world.html" rel="alternate"></link><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-01-28:/hello-world.html</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I am currently pursuing a career change in to data science after previously working as a geophysicist.&lt;/p&gt;
+&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -975,18 +981,49 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Here are a few (there are "many" more):&lt;/p&gt;
+&lt;p&gt;I am currently pursuing a career change in to data science after previously working as a geophysicist.&lt;/p&gt;
+&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Tree&lt;/li&gt;
-&lt;li&gt;House&lt;/li&gt;
-&lt;li&gt;Giraffe&lt;/li&gt;
-&lt;li&gt;Lobster&lt;/li&gt;
-&lt;li&gt;Jenga&lt;/li&gt;
+&lt;li&gt;Geology, Geophysics or Georeferenced Data&lt;/li&gt;
+&lt;li&gt;Gaming (Video and Modern Board Games)&lt;/li&gt;
+&lt;li&gt;Design and Visualisation (Infographics)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;Enjoy!&lt;/p&gt;
+&lt;p&gt;The first couple of posts I'm working on are how to set up a free blog using Jupyter notebooks with Anaconda, which is a slightly different approach to lots of the existing guides online. Then following implementing a board game in my coursework, &lt;a href="https://en.wikipedia.org/wiki/The_Three_Musketeers"&gt;The Three Musketeers&lt;/a&gt;, I'm keen on trying on a game that isn't completely asymmetric (possibly a interface, solver and/or board generator for &lt;a href="https://en.wikipedia.org/wiki/Sudoku"&gt;Sudoku&lt;/a&gt; or &lt;a href="https://en.wikipedia.org/wiki/Nonogram"&gt;Nonograms&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;Thats all for now, but as I'm making use of Jupyter notebooks, I feel compelled to at least use some Python, so in time honoured tradition:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Hello world&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;Hello world
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
 &lt;/div&gt;
  
 

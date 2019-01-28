@@ -1,4 +1,78 @@
-@import "variables.less";
+#https://less.pytes.net/
+
+// Flex colors
+@orange: #D9411E;
+@light-orange: #FF5A09;
+@white:  #ffffff;
+@grey: #333333;
+@light-grey:  #eeeeee;
+@med-grey:  #999999;
+@dark-grey: #242121;
+
+@custom-grey: #374c5b;
+@light-blue: #3371b7;
+@dark-blue: #125688;
+@light-red: #e50007;
+@red: #c40006;
+
+// Font family
+@sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
+@mono: 'Source Code Pro', 'Consolas', 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+
+// Body
+@body-bg: @white;
+@text-color: @dark-grey;
+
+// Links
+@link-color: @red;
+@link-hover-color: @light-red;
+
+// Sidebar (aside)
+@sidebar-bg: @custom-grey;
+@sidebar-text-color: @white;
+@sidebar-link-color: @white;
+@sidebar-link-hover-color: @light-grey;
+
+// Buttons
+@btn-bg: @red;
+@btn-text-color: @white;
+@btn-hover-color: @light-red;
+
+// Tag cloud
+@tag-bg: @red;
+@tag-text-color: @white;
+@tag-hover-color: @light-red;
+
+// Header
+@header-text-color: @med-grey;
+
+// Footer
+@footer-text-color: @med-grey;
+@footer-border-color: @light-grey;
+
+// Relativer posts
+@rel-post-border-color: @light-grey;
+
+// Nav
+@nav-border-color: @light-grey;
+
+// Social buttons
+
+@email-bg-color: #578ad6;
+@facebook-bg-color: #3e5b98;
+@github-bg-color: #111010;
+@google-bg-color: #d93e2d;
+@instagram-bg-color: #125688;
+@linkedin-bg-color: #3371b7;
+@reddit-bg-color: #ff4500;
+@rss-bg-color: #f26109;
+@soundcloud-bg-color: #ff5500;
+@stack-overflow-bg-color: #ff9900;
+@tumblr-bg-color: #36465d;
+@twitter-bg-color: #4da7de;
+@youtube-bg-color: #e02a20;
+@gitlab-bg-color: #fca326;
+@steam-bg-color: #000000;
 
 html, body {
   width: 100%;
@@ -394,16 +468,8 @@ ul.social {
     background-color: @instagram-bg-color;
   }
 
-  a.sc-pinterest {
-    background-color: @pinterest-bg-color;
-  }
-
   a.sc-linkedin {
     background-color: @linkedin-bg-color;
-  }
-
-  a.sc-medium {
-    background-color: @medium-bg-color;
   }
 
   a.sc-rss {
@@ -446,18 +512,9 @@ ul.social {
     background-color: @gitlab-bg-color;
   }
 
-  a.sc-xing {
-    background-color: @xing-bg-color;
+  a.sc-steam {
+    background-color: @steam-bg-color;
   }
-
-  a.sc-bitbucket {
-    background-color: @bitbucket-bg-color;
-  }
-
-  a.sc-mastodon {
-    background-color: @mastodon-bg-color;
-  }
-
 }
 
 .ads-aside {
@@ -480,7 +537,7 @@ ul.social {
 
 @media screen and (min-width: 768px) {
   aside {
-    width: 25%;
+    width: 22%;
     height: 100%;
     position: fixed;
     top: 0;
@@ -506,11 +563,11 @@ ul.social {
   }
 
   main {
-    width: 75%;
+    width: 78%;
     height: 100%;
     position: absolute;
     top: 0;
-    left: 25%;
+    left: 22%;
 
     article {
 
