@@ -1,118 +1,10 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="" />
-
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
-    <link rel="stylesheet" type="text/css" href="https://davebloomer.github.io/theme/stylesheet/style.min.css">
-
-  <link rel="stylesheet" type="text/css" href="https://davebloomer.github.io/theme/pygments/github.min.css">
-  <link rel="stylesheet" type="text/css" href="https://davebloomer.github.io/theme/font-awesome/css/fontawesome.css">
-  <link rel="stylesheet" type="text/css" href="https://davebloomer.github.io/theme/font-awesome/css/brands.css">
-  <link rel="stylesheet" type="text/css" href="https://davebloomer.github.io/theme/font-awesome/css/solid.css">
-
-
-    <link href="https://davebloomer.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Dave Bloomer Atom">
-
-
-
-
-
-<meta name="author" content="Dave Bloomer" />
-<meta name="description" content="I am currently pursuing a career change in to data science after previously working as a geophysicist. As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:" />
-<meta name="keywords" content="misc">
-
-<meta property="og:site_name" content="Dave Bloomer"/>
-<meta property="og:title" content="Hello world"/>
-<meta property="og:description" content="I am currently pursuing a career change in to data science after previously working as a geophysicist. As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:"/>
-<meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://davebloomer.github.io/hello-world.html"/>
-<meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2019-01-27 00:00:00+00:00"/>
-<meta property="article:modified_time" content=""/>
-<meta property="article:author" content="https://davebloomer.github.io/author/dave-bloomer.html">
-<meta property="article:section" content="misc"/>
-<meta property="article:tag" content="misc"/>
-<meta property="og:image" content="">
-
-  <title>Dave Bloomer &ndash; Hello world</title>
-
-</head>
-<body>
-  <aside>
-    <div>
-      <a href="https://davebloomer.github.io">
-        <img src="https://davebloomer.github.io/theme/img/profile.png" alt="Dave Bloomer" title="Dave Bloomer">
-      </a>
-      <h1><a href="https://davebloomer.github.io">Dave Bloomer</a></h1>
-
-<p>Data Science Blog</p>
-      <nav>
-        <ul class="list">
-          <li><a href="https://davebloomer.github.io/pages/about.html#about">about</a></li>
-
-        </ul>
-      </nav>
-
-      <ul class="social">
-          <li>
-            <a  class="sc-envelope" href="mailto://dave.bloomer@gmail.com" target="_blank">
-            <i class="fas fa-envelope">
-            </i>
-          </a></li>
-          <li>
-            <a  class="sc-linkedin" href="http://www.linkedin.com/in/davebloomer1" target="_blank">
-            <i class="fab fa-linkedin">
-            </i>
-          </a></li>
-          <li>
-            <a  class="sc-instagram" href="http://www.instagram.com/davebloomer1" target="_blank">
-            <i class="fab fa-instagram">
-            </i>
-          </a></li>
-          <li>
-            <a  class="sc-steam" href="https://steamcommunity.com/profiles/76561197960501858" target="_blank">
-            <i class="fab fa-steam">
-            </i>
-          </a></li>
-      </ul>
-    </div>
-
-
-  </aside>
-  <main>
-
-    <nav>
-      <a href="https://davebloomer.github.io">    Home
-</a>
-
-      <a href="/archives.html">Archives</a>
-
-      <a href="https://davebloomer.github.io/feeds/all.atom.xml">    Atom
-</a>
-
-    </nav>
-
-<article class="single">
-  <header>
-      
-    <h1 id="hello-world">Hello world</h1>
-    <p>
-          Posted on Sun 27 January 2019 in <a href="https://davebloomer.github.io/category/misc.html">misc</a>
-
-
-    </p>
-  </header>
-
-
-  <div>
-    <style type="text/css">/*!
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer - python</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/python.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-01-28T00:00:00+00:00</updated><subtitle>Data Science Blog</subtitle><entry><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 1)</title><link href="https://davebloomer.github.io/pelican-ipynb-blog-pt1.html" rel="alternate"></link><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-01-28:/pelican-ipynb-blog-pt1.html</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Word on the town, getting in the habit of documenting your work with Jupyter notebooks is great practise. Jupyter notebooks allow you to  create and share documents containing code and rich text, to demonstrate your workflows and visualisations. On a more personal level, it gives you some freedom to be forgetful and know you'll always have an easy repository to remember how you tackled a problem in the past.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -339,7 +231,7 @@ div.unrecognized_cell .inner_cell a:hover {
   text-decoration: none;
 }
 @media (max-width: 540px) {
-  div.unrecognized_cell > div.prompt {
+  div.unrecognized_cell &gt; div.prompt {
     display: none;
   }
 }
@@ -392,19 +284,19 @@ div.input_prompt {
   color: #303F9F;
   border-top: 1px solid transparent;
 }
-div.input_area > div.highlight {
+div.input_area &gt; div.highlight {
   margin: 0.4em;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-div.input_area > div.highlight > pre {
+div.input_area &gt; div.highlight &gt; pre {
   margin: 0px;
   border: none;
   padding: 0px;
   background-color: transparent;
 }
-/* The following gets added to the <head> if it is detected that the user has a
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
  * monospace font with inconsistent normal/bold/italic height.  See
  * notebookmain.js.  Such fonts will have keywords vertically offset with
  * respect to the rest of the text.  The user should select a better font.
@@ -450,7 +342,7 @@ div.input_area > div.highlight > pre {
 }
 /*
 
-Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Org>
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
 Adapted from GitHub theme
 
 */
@@ -912,7 +804,7 @@ div.text_cell {
   align-items: stretch;
 }
 @media (max-width: 540px) {
-  div.text_cell > div.prompt {
+  div.text_cell &gt; div.prompt {
     display: none;
   }
 }
@@ -977,8 +869,8 @@ h6:hover .anchor-link {
   font-size: 100%;
   font-style: italic;
 }
-</style>
-<style type="text/css">.highlight .hll { background-color: #ffffcc }
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
 .highlight .c { color: #408080; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
@@ -1046,8 +938,8 @@ h6:hover .anchor-link {
 .highlight .vg { color: #19177C } /* Name.Variable.Global */
 .highlight .vi { color: #19177C } /* Name.Variable.Instance */
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
-.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */</style>
-<style type="text/css">
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
 /* Temporary definitions which will become obsolete with Notebook release 5.0 */
 .ansi-black-fg { color: #3E424D; }
 .ansi-black-bg { background-color: #3E424D; }
@@ -1083,59 +975,114 @@ h6:hover .anchor-link {
 .ansi-white-intense-bg { background-color: #A1A6B2; }
 
 .ansi-bold { font-weight: bold; }
-</style><body>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I am currently pursuing a career change in to data science after previously working as a geophysicist.</p>
-<p>As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:</p>
-<ul>
-<li>Geology, Geophysics or Georeferenced Data</li>
-<li>Gaming (Video and Modern Board Games)</li>
-<li>Design and Visualisation (Infographics)</li>
-</ul>
-<p>The first couple of posts I'm working on are how to set up a free blog using Jupyter notebooks with Anaconda, which is a slightly different approach to lots of the existing guides online. Then following implementing a board game in my coursework, <a href="https://en.wikipedia.org/wiki/The_Three_Musketeers">The Three Musketeers</a>, I'm keen on trying on a game that isn't completely asymmetric (possibly a interface, solver and/or board generator for <a href="https://en.wikipedia.org/wiki/Sudoku">Sudoku</a> or <a href="https://en.wikipedia.org/wiki/Nonogram">Nonograms</a>).</p>
-<p>Thats all for now, but as I'm making use of Jupyter notebooks, I feel compelled to at least use some Python, so in time honoured tradition:</p>
+&lt;/style&gt;&lt;body&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Word on the town, getting in the habit of documenting your work with Jupyter notebooks is great practise. Jupyter notebooks allow you to  create and share documents containing code and rich text, to demonstrate your workflows and visualisations. On a more personal level, it gives you some freedom to be forgetful and know you'll always have an easy repository to remember how you tackled a problem in the past.&lt;/p&gt;
+&lt;p&gt;The next logical step is how can I use these files to generate content for a blog, without having to reformat and convert any visualisations in to static images? And Pelican it seems, is the answer.&lt;/p&gt;
+&lt;p&gt;This post documents my process of setting up this blog from start to scratch. I know it will be useful to someone, that is myself, because I know I'll forget some if not all of these steps! So here we go..&lt;/p&gt;
+&lt;p&gt;nb: Credit to &lt;a href="https://www.dataquest.io/blog/how-to-setup-a-data-science-blog/"&gt;dataquest.io&lt;/a&gt; which this post is based on. However, I came across a ton of problems with using Anaconda, and other issues caused by subsequent updates to packages.&lt;/p&gt;
+&lt;h3 id="Setting-up-a-Python-environment-and-install-packages"&gt;Setting up a Python environment and install packages&lt;a class="anchor-link" href="#Setting-up-a-Python-environment-and-install-packages"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Setting up environments in Python is good practise when working on your own or cloned projects. It creates a seperate installation of Python, where you can install different combinations of packages, with different versions to your base installation, which can be important when ensuring each of your packages and plug-ins runs together smoothly.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Open up Anaconda Prompt&lt;/li&gt;
+&lt;li&gt;Navigate to the location where you want to keep your files using cd (change directory) and mkdir (make directory), for this example, we'll make a folder: 'ipynblog'&lt;/li&gt;
+&lt;li&gt;Create a new Python environment: &lt;code&gt;conda create -n ipynblog python=3.6.5&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;or &lt;code&gt;conda create -n ipynblog python=3.5 anaconda&lt;/code&gt; to install the full compliment of Anaconda packages (~3gb)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Activate the environment: &lt;code&gt;conda activate ipynblog&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Create a file called requirements.txt containing:&lt;/li&gt;
+&lt;/ul&gt;
 
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Hello world&#39;</span><span class="p">)</span>
-</pre></div>
+&lt;pre&gt;&lt;code&gt;Markdown
+pelican
+jupyter
+ipython
+matplotlib&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Install the required packages through conda: &lt;code&gt;conda install -c conda-forge --file=requirements.txt&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Some other useful commands:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;View installed environments: &lt;code&gt;conda env list&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Delete environment: &lt;code&gt;conda remove -n ipynblog --all&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;View installed packages: &lt;code&gt;conda list&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="Setting-up-Pelican,-Git-and-the-ipynb-(Jupyter)-plugin"&gt;Setting up Pelican, Git and the ipynb (Jupyter) plugin&lt;a class="anchor-link" href="#Setting-up-Pelican,-Git-and-the-ipynb-(Jupyter)-plugin"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Start the pelican quickstart set-up: &lt;code&gt;pelican-quickstart&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Choose the following options for now (use the default options with exception of Title, Author and URL prefix):&lt;/li&gt;
+&lt;/ul&gt;
 
-</div>
-</div>
-</div>
+&lt;pre&gt;&lt;code&gt;&amp;gt; Where do you want to create your new web site? [.]
+&amp;gt; What will be the title of this web site? Dave's Blog
+&amp;gt; Who will be the author of this web site? Dave Bloomer
+&amp;gt; What will be the default language of this web site? [en]
+&amp;gt; Do you want to specify a URL prefix? e.g., http://example.com   (Y/n) n
+&amp;gt; Do you want to enable article pagination? (Y/n)
+&amp;gt; How many articles per page do you want? [10]
+&amp;gt; What is your time zone? [Europe/Paris] Europe/London
+&amp;gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n)
+&amp;gt; Do you want an auto-reload &amp;amp; simpleHTTP script to assist with theme and site development? (Y/n)
+&amp;gt; Do you want to upload your website using FTP? (y/N)
+&amp;gt; Do you want to upload your website using SSH? (y/N)
+&amp;gt; Do you want to upload your website using Dropbox? (y/N)
+&amp;gt; Do you want to upload your website using S3? (y/N)
+&amp;gt; Do you want to upload your website using Rackspace Cloud Files? (y/N)
+&amp;gt; Do you want to upload your website using GitHub Pages? (y/N)&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Install &lt;a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git"&gt;Git&lt;/a&gt;: &lt;code&gt;conda install -c conda-forge git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Initialise an empty Git repository, this will allow you to add the &lt;a href="https://github.com/danielfrg/pelican-ipynb/"&gt;ipynb plugin&lt;/a&gt;: &lt;code&gt;git init&lt;/code&gt; &lt;/li&gt;
+&lt;li&gt;Create a '.gitignore' file containing:&lt;/li&gt;
+&lt;/ul&gt;
 
-<div class="output_wrapper">
-<div class="output">
+&lt;pre&gt;&lt;code&gt;output*
+cache*
+*.pyc
+*.pid&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a folder 'plugins': &lt;code&gt;mkdir plugins&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Download the ipynb plugin to the plugins folder: &lt;code&gt;git submodule add git://github.com/danielfrg/pelican-ipynb.git plugins/ipynb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Add the following lines to &lt;code&gt;pelicanconf.py&lt;/code&gt;:&lt;/li&gt;
+&lt;/ul&gt;
 
+&lt;pre&gt;&lt;code&gt;MARKUP = ('md', 'ipynb')
+PLUGIN_PATHS = ['./plugins']
+PLUGINS = ['ipynb.markup']
+IGNORE_FILES = ['.ipynb_checkpoints', 'ignore']  # If you want to create content directly in the 'output' folder&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id="Create-some-content"&gt;Create some content&lt;a class="anchor-link" href="#Create-some-content"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Navigate to the 'content' directory, where we will start generating, well, content. Pelican supports the creation of 'blog' and 'pages' type posts. Blog posts live in the 'content' directory, while pages are static (think about, resume, contact..) and live in the 'content\pages' directory. Now that we've installed the 'ipynb' plug-in, you can create content in either &lt;a href="https://www.markdownguide.org/getting-started/"&gt;Markdown&lt;/a&gt; or &lt;a href="https://jupyter.readthedocs.io/en/latest/content-quickstart.html"&gt;Jupyter&lt;/a&gt;. Additionally, we need to create metadata which contains some basic information such as title, category, post date etc. While in-document metadata is &lt;a href="https://github.com/danielfrg/pelican-ipynb"&gt;officially supported&lt;/a&gt;, I found that it caused problems and decided to keep this information in a seperate file. As an example:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Create a Jupyter notebook in the 'content' folder. An example file can be found &lt;a href="https://github.com/dataquestio/jupyter-blog/blob/master/content/first-post.ipynb"&gt;here&lt;/a&gt; (credit: dataquest.io)&lt;/li&gt;
+&lt;li&gt;Create a '.nbdata' file with the same name as the Jupyter notebook containing:&lt;/li&gt;
+&lt;/ul&gt;
 
-<div class="output_area">
+&lt;pre&gt;&lt;code&gt;Title: Blog Post Title
+Slug: address-shown-in-browser  # ie. davebloomer.github.io/address-shown-in-browser
+Date: 2019-01-28 12:00
+Category: blog, jupyter, python
+Tags: first-post
+Author: Dave Bloomer&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Don't worry too much about the details for now. It's inevitable that you'll want to change the formatting when you get your blog up and running and can see how it looks in the flesh.&lt;/p&gt;
+&lt;h3 id="Use-Pelican-to-convert-ipynb-to-html-and-view"&gt;Use Pelican to convert ipynb to html and view&lt;a class="anchor-link" href="#Use-Pelican-to-convert-ipynb-to-html-and-view"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;We'll now use Pelican to convert our Jupyter notebook in to html, which can be uploaded to GutHub pages.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Navigate back to the 'ipynblog' folder with &lt;code&gt;cd ..&lt;/code&gt; and run Pelican: &lt;code&gt;pelican content&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;Bonus step: Start Googling the inevitable error messages&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;The files generated by Pelican are stored within the 'output' folder, navigate there using: &lt;code&gt;cd output&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Initalise a local server instance: &lt;code&gt;python -m http.server&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Go to '&lt;a href="http://localhost:8000/"&gt;http://localhost:8000/&lt;/a&gt;' in your browser and view your blog!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;That's all for part one. In the next post, we'll be looking at installing a theme, delving in to some options for customisability and uploading the site to GitHub pages.&lt;/p&gt;
 
-<div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Hello world
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
  
 
-</body>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+&lt;/body&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
     mathjaxscript.type = 'text/javascript';
@@ -1162,40 +1109,5 @@ h6:hover .anchor-link {
         "}); ";
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
-</script>
-
-  </div>
-  <div class="tag-cloud">
-    <p>
-      <a href="https://davebloomer.github.io/tag/misc.html">misc</a>
-    </p>
-  </div>
-
-
-
-
-
-</article>
-
-    <footer>
-<p>&copy;  2019</p>
-<p>    Powered by <a href="http://getpelican.com" target="_blank">Pelican</a> - <a href="https://github.com/alexandrevicenzi/flex" target="_blank">Flex</a> theme by <a href="http://alexandrevicenzi.com" target="_blank">Alexandre Vicenzi</a>
-</p>    </footer>
-  </main>
-
-
-
-
-<script type="application/ld+json">
-{
-  "@context" : "http://schema.org",
-  "@type" : "Blog",
-  "name": " Dave Bloomer ",
-  "url" : "https://davebloomer.github.io",
-  "image": "",
-  "description": "Dave Bloomer Personal Blog"
-}
-</script>
-
-</body>
-</html>
+&lt;/script&gt;
+</content><category term="python"></category><category term="blog"></category><category term="pelican"></category><category term="ipynb"></category><category term="jupyter"></category><category term="git"></category><category term="anaconda"></category></entry></feed>
