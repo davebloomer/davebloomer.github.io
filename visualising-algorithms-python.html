@@ -25,12 +25,12 @@
 
 
 <meta name="author" content="Dave Bloomer" />
-<meta name="description" content="One of the themes for this term is algorithm optimisation, so I&#39;ve been looking over industry standard sort and search algorithms, ever trying to minimise the &#39;Big O&#39;. A classmate shared these sort visualisations by morolin, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been translated in to Python by Kirk Kaiser" />
+<meta name="description" content="One of the themes for this term is algorithm optimisation, so I&#39;ve been looking over industry standard sort and search algorithms, ever trying to minimise the &#39;Big O&#39;. A classmate shared these sort visualisations by morolin, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been translated in to Python by Kirk Kaiser. Let&#39;s face it, writing code to sort a list isn&#39;t particularly interesting, so I wanted to see if I could impliment and visualise my own sort algorithm(s). The next step of course, was to see if similar visualisations could be created to demonstrate search algorithms.." />
 <meta name="keywords" content="python, visualisation, sort, search">
 
 <meta property="og:site_name" content="Dave Bloomer"/>
 <meta property="og:title" content="Visualising Algorithms with Python"/>
-<meta property="og:description" content="One of the themes for this term is algorithm optimisation, so I&#39;ve been looking over industry standard sort and search algorithms, ever trying to minimise the &#39;Big O&#39;. A classmate shared these sort visualisations by morolin, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been translated in to Python by Kirk Kaiser"/>
+<meta property="og:description" content="One of the themes for this term is algorithm optimisation, so I&#39;ve been looking over industry standard sort and search algorithms, ever trying to minimise the &#39;Big O&#39;. A classmate shared these sort visualisations by morolin, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been translated in to Python by Kirk Kaiser. Let&#39;s face it, writing code to sort a list isn&#39;t particularly interesting, so I wanted to see if I could impliment and visualise my own sort algorithm(s). The next step of course, was to see if similar visualisations could be created to demonstrate search algorithms.."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://davebloomer.github.io/visualising-algorithms-python.html"/>
 <meta property="og:type" content="article"/>
@@ -1395,19 +1395,24 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Sort-and-Search-Algorithms-Visualised-in-Python">Sort and Search Algorithms Visualised in Python<a class="anchor-link" href="#Sort-and-Search-Algorithms-Visualised-in-Python">&#182;</a></h3><table>
+<h3 id="Sort-and-Search-Algorithms-Visualised-in-Python">Sort and Search Algorithms Visualised in Python<a class="anchor-link" href="#Sort-and-Search-Algorithms-Visualised-in-Python">&#182;</a></h3><p>So here are the visualisations on a common time-scale:</p>
+<table>
 <thead><tr>
 <th>Bubble Sort</th>
 <th>Linear Search</th>
+<th>Binary Search</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><img src="images/bubble_sort_optimize.gif" alt="Bubble Sort" title="Bubble Sort"></td>
 <td><img src="images/linear_search_optimize.gif" alt="Linear Search" title="Linear Search"></td>
+<td><img src="images/binary_search_optimize.gif" alt="Binary Search" title="Binary Search"></td>
 </tr>
 </tbody>
 </table>
+<p>I was suprised just how efficient the binary search was compared to the linear search, it certainly has the 'Big O' factor.</p>
+<p>It would nice to see how these can be made larger without losing resolution in the future, and perhaps try out a few more algorithms!</p>
 
 </div>
 </div>

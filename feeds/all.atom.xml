@@ -4,7 +4,8 @@
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;One of the themes for this term is algorithm optimisation, so I've been looking over industry standard sort and search algorithms, ever trying to minimise the '&lt;a href="https://en.wikipedia.org/wiki/Big_O_notation"&gt;Big O&lt;/a&gt;'. A classmate shared &lt;a href="https://www.reddit.com/r/woahdude/comments/78fzi7/sorting_algorithms_visualized_gifv/"&gt;these sort visualisations by morolin&lt;/a&gt;, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been &lt;a href="https://www.makeartwithpython.com/blog/visualizing-sort-algorithms-in-python"&gt;translated in to Python by Kirk Kaiser&lt;/a&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;One of the themes for this term is algorithm optimisation, so I've been looking over industry standard sort and search algorithms, ever trying to minimise the '&lt;a href="https://en.wikipedia.org/wiki/Big_O_notation"&gt;Big O&lt;/a&gt;'. A classmate shared &lt;a href="https://www.reddit.com/r/woahdude/comments/78fzi7/sorting_algorithms_visualized_gifv/"&gt;these sort visualisations by morolin&lt;/a&gt;, which really help to visualise the differences in efficiency between the algorithms. While these visualisations were created in Golang, they have since been &lt;a href="https://www.makeartwithpython.com/blog/visualizing-sort-algorithms-in-python"&gt;translated in to Python by Kirk Kaiser&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Let's face it, writing code to sort a list isn't particularly interesting, so I wanted to see if I could impliment and visualise my own sort algorithm(s). The next step of course, was to see if similar visualisations could be created to demonstrate search algorithms..&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -1284,19 +1285,24 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Sort-and-Search-Algorithms-Visualised-in-Python"&gt;Sort and Search Algorithms Visualised in Python&lt;a class="anchor-link" href="#Sort-and-Search-Algorithms-Visualised-in-Python"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;table&gt;
+&lt;h3 id="Sort-and-Search-Algorithms-Visualised-in-Python"&gt;Sort and Search Algorithms Visualised in Python&lt;a class="anchor-link" href="#Sort-and-Search-Algorithms-Visualised-in-Python"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;So here are the visualisations on a common time-scale:&lt;/p&gt;
+&lt;table&gt;
 &lt;thead&gt;&lt;tr&gt;
 &lt;th&gt;Bubble Sort&lt;/th&gt;
 &lt;th&gt;Linear Search&lt;/th&gt;
+&lt;th&gt;Binary Search&lt;/th&gt;
 &lt;/tr&gt;
 &lt;/thead&gt;
 &lt;tbody&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;img src="images/bubble_sort_optimize.gif" alt="Bubble Sort" title="Bubble Sort"&gt;&lt;/td&gt;
 &lt;td&gt;&lt;img src="images/linear_search_optimize.gif" alt="Linear Search" title="Linear Search"&gt;&lt;/td&gt;
+&lt;td&gt;&lt;img src="images/binary_search_optimize.gif" alt="Binary Search" title="Binary Search"&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+&lt;p&gt;I was suprised just how efficient the binary search was compared to the linear search, it certainly has the 'Big O' factor.&lt;/p&gt;
+&lt;p&gt;It would nice to see how these can be made larger without losing resolution in the future, and perhaps try out a few more algorithms!&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1337,7 +1343,8 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Word on the town, getting in the habit of documenting your work with Jupyter notebooks is great practise. Jupyter notebooks allow you to  create and share documents containing code and rich text, to demonstrate your workflows and visualisations. On a more personal level, it gives you some freedom to be forgetful and know you'll always have an easy repository to remember how you tackled a problem in the past.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;Word on the town, getting in the habit of documenting your work with Jupyter notebooks is great practise. Jupyter notebooks allow you to  create and share documents containing code and rich text, to demonstrate your workflows and visualisations. On a more personal level, it gives you some freedom to be forgetful and know you'll always have an easy repository to remember how you tackled a problem in the past.&lt;/p&gt;
+&lt;p&gt;The next logical step is how can I use these files to generate content for a blog, without having to reformat and convert any visualisations in to static images? And Pelican it seems, is the answer.&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
@@ -2449,7 +2456,13 @@ Author: Dave Bloomer&lt;/code&gt;&lt;/pre&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I am currently pursuing a career change in to data science after previously working as a geophysicist.&lt;/p&gt;
-&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Geology, Geophysics or Georeferenced Data&lt;/li&gt;
+&lt;li&gt;Gaming (Video and Modern Board Games)&lt;/li&gt;
+&lt;li&gt;Design and Visualisation (Infographics)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first couple of posts I'm working on are how to set up a free blog using Jupyter notebooks with Anaconda, which is a slightly different approach to lots of the existing guides online. Then following implementing a board game in my coursework, &lt;a href="https://en.wikipedia.org/wiki/The_Three_Musketeers"&gt;The Three Musketeers&lt;/a&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *

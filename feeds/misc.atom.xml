@@ -5,7 +5,13 @@
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;I am currently pursuing a career change in to data science after previously working as a geophysicist.&lt;/p&gt;
-&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+&lt;p&gt;As part of this process, I have decided to start blogging my progress in training to become a data scientist, not to share my progress through education, but to give myself an outlet to explore practical data science through my real world interests. What does this mean? Creating data science projects that explore the following themes:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Geology, Geophysics or Georeferenced Data&lt;/li&gt;
+&lt;li&gt;Gaming (Video and Modern Board Games)&lt;/li&gt;
+&lt;li&gt;Design and Visualisation (Infographics)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The first couple of posts I'm working on are how to set up a free blog using Jupyter notebooks with Anaconda, which is a slightly different approach to lots of the existing guides online. Then following implementing a board game in my coursework, &lt;a href="https://en.wikipedia.org/wiki/The_Three_Musketeers"&gt;The Three Musketeers&lt;/a&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
 *
 * IPython notebook
 *
