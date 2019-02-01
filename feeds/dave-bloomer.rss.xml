@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Blog</description><lastBuildDate>Tue, 29 Jan 2019 00:00:00 +0000</lastBuildDate><item><title>Visualising Algorithms with Python</title><link>https://davebloomer.github.io/visualising-algorithms-python.html</link><description>
+<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Blog</description><lastBuildDate>Fri, 01 Feb 2019 00:00:00 +0000</lastBuildDate><item><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)</title><link>https://davebloomer.github.io/pelican-ipynb-blog-pt2.html</link><description>
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;On to the second part of the series documenting the process of setting up this blog. This post will cover setting up GitHub pages and pushing your website, looking at options for customisation such as theme, and finally creating some batch files to streamline the process for adding a new post to the blog to avoid excessive use of terminal.&lt;/p&gt;
+&lt;h3 id="GitHub-Pages-and-gbp-import"&gt;GitHub Pages and gbp-import&lt;a class="anchor-link" href="#GitHub-Pages-and-gbp-import"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;If you don't already have one, &lt;a href="https://github.com/join/"&gt;create an account&lt;/a&gt; on GitHub&lt;/li&gt;
+&lt;li&gt;Create a new repository with the name &lt;code&gt;yoursite.github.io&lt;/code&gt; without creating a readme or .gitignore&lt;/li&gt;
+&lt;li&gt;Return to terminal and install ghp-import using: &lt;code&gt;pip install ghp-pages&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;nb: ghp-pages is available on conda-forge, but I would recommend installing from pip as I encountered a number of issues with the conda-forge install&lt;/li&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Bloomer</dc:creator><pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate><guid isPermaLink="false">tag:davebloomer.github.io,2019-02-01:/pelican-ipynb-blog-pt2.html</guid><category>python</category><category>blog</category><category>pelican</category><category>ipynb</category><category>jupyter</category><category>git</category><category>anaconda</category></item><item><title>Visualising Algorithms with Python</title><link>https://davebloomer.github.io/visualising-algorithms-python.html</link><description>
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
