@@ -1,4 +1,4 @@
-#https://less.pytes.net/
+// https://less.pytes.net	
 
 // Flex colors
 @orange: #D9411E;
@@ -14,31 +14,6 @@
 @dark-blue: #125688;
 @light-red: #e50007;
 @red: #c40006;
-
-@background-pattern: gradient-pattern;
-
-.gradient-pattern {
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  width: 320px;
-  height: 320px;
-  border: none;
-  font: normal 1px/normal Arial, Helvetica, sans-serif;
-  color: rgba(255,255,255,1);
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  background: -webkit-linear-gradient(90deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), -webkit-linear-gradient(-180deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), rgba(97,142,173,1);
-  background: -moz-linear-gradient(0deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), -moz-linear-gradient(270deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), rgba(97,142,173,1);
-  background: linear-gradient(0deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), linear-gradient(270deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 20%, rgba(55, 76, 91, 0.1) 20%, rgba(55, 76, 91, 0.1) 40%, rgba(55, 76, 91, 0.4) 40%, rgba(55, 76, 91, 0.2) 60%, rgba(55, 76, 91, 0.4) 60%, rgba(55, 76, 91, 0.4) 80%, rgba(55, 76, 91, 0.6) 80%, rgba(55, 76, 91, 0.6) 100%), rgba(97,142,173,1);
-  background-position: auto auto;
-  -webkit-background-origin: padding-box;
-  background-origin: padding-box;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
-  -webkit-background-size: 100% 100%;
-  background-size: 100% 100%;
-}
 
 // Font family
 @sans: 'Source Sans Pro', 'Roboto', 'Open Sans', 'Liberation Sans', 'DejaVu Sans', 'Verdana', 'Helvetica', 'Arial', sans-serif;
@@ -171,9 +146,14 @@ img {
 }
 
 aside {
-  background-color: @sidebar-bg;
+  background: -webkit-linear-gradient(-180deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 13%, rgba(55, 76, 91, 0.0) 13%, rgba(55, 76, 91, 0.1) 13%, rgba(55, 76, 91, 0.1) 26%, rgba(55, 76, 91, 0.2) 26%, rgba(55, 76, 91, 0.2) 38%, rgba(55, 76, 91, 0.3) 39%, rgba(55, 76, 91, 0.3) 51%, rgba(55, 76, 91, 0.4) 52%, rgba(55, 76, 91, 0.4) 64%, rgba(55, 76, 91, 0.6) 65%, rgba(55, 76, 91, 0.6) 77%, rgba(55, 76, 91, 0.8) 77%, rgba(55, 76, 91, 0.8) 89%, rgba(55, 76, 91, 1.0) 90%, rgba(55, 76, 91, 1.0) 100%), rgba(93,121,140,1);
+  background: -moz-linear-gradient(270deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 13%, rgba(55, 76, 91, 0.0) 13%, rgba(55, 76, 91, 0.1) 13%, rgba(55, 76, 91, 0.1) 26%, rgba(55, 76, 91, 0.2) 26%, rgba(55, 76, 91, 0.2) 38%, rgba(55, 76, 91, 0.3) 39%, rgba(55, 76, 91, 0.3) 51%, rgba(55, 76, 91, 0.4) 52%, rgba(55, 76, 91, 0.4) 64%, rgba(55, 76, 91, 0.6) 65%, rgba(55, 76, 91, 0.6) 77%, rgba(55, 76, 91, 0.8) 77%, rgba(55, 76, 91, 0.8) 89%, rgba(55, 76, 91, 1.0) 90%, rgba(55, 76, 91, 1.0) 100%), rgba(93,121,140,1);
+  background: linear-gradient(270deg, rgba(55, 76, 91, 0) 0, rgba(55, 76, 91, 0) 13%, rgba(55, 76, 91, 0.0) 13%, rgba(55, 76, 91, 0.1) 13%, rgba(55, 76, 91, 0.1) 26%, rgba(55, 76, 91, 0.2) 26%, rgba(55, 76, 91, 0.2) 38%, rgba(55, 76, 91, 0.3) 39%, rgba(55, 76, 91, 0.3) 51%, rgba(55, 76, 91, 0.4) 52%, rgba(55, 76, 91, 0.4) 64%, rgba(55, 76, 91, 0.6) 65%, rgba(55, 76, 91, 0.6) 77%, rgba(55, 76, 91, 0.8) 77%, rgba(55, 76, 91, 0.8) 89%, rgba(55, 76, 91, 1.0) 90%, rgba(55, 76, 91, 1.0) 100%), rgba(93,121,140,1);
+
+  //background-color: @sidebar-bg;
   color: @sidebar-text-color;
   text-align: center;
+
 
   a {
     color: @sidebar-link-color;
@@ -186,7 +166,7 @@ aside {
   div {
     padding: 20px;
     margin: 0;
-
+  
     img {
       border-radius: 50%;
       max-width: 140px;
