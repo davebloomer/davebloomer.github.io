@@ -1,5 +1,1262 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-02-08T00:00:00+00:00</updated><entry><title>Visualising Geospatial Data</title><link href="https://davebloomer.github.io/visualising-geospatial-data.html" rel="alternate"></link><published>2019-02-08T00:00:00+00:00</published><updated>2019-02-08T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-08:/visualising-geospatial-data.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-02-27T00:00:00+00:00</updated><entry><title>Webscraping Metacritic</title><link href="https://davebloomer.github.io/webscraping-metacritic.html" rel="alternate"></link><published>2019-02-27T00:00:00+00:00</published><updated>2019-02-27T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-27:/webscraping-metacritic.html</id><summary type="html">
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;In looking for interesting data sets to play with I'm often searching through Kaggle thinking 'this looks awesome, but if only it had this attribute' or 'data covering a different time period'. Most recently, this happened when looking through the &lt;a href="https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings"&gt;'Kaggle data set for metacritic'&lt;/a&gt;. The natural next step was to start looking at scraping my own data, which is the process I want to cover in this post.&lt;/p&gt;
+&lt;p&gt;Inevitably the html syntax for metacritic has changed from the process documented in the Kaggle kernel, so a reworking of the html parsing has been required, which also makes this an excellent excuse to get some practise in natural languages and parsing, thanks Chomsky!&lt;/p&gt;</summary><content type="html">&lt;style type="text/css"&gt;/*!
+*
+* IPython notebook
+*
+*/
+/* CSS font colors for translated ANSI colors. */
+.ansibold {
+  font-weight: bold;
+}
+/* use dark versions for foreground, to improve visibility */
+.ansiblack {
+  color: black;
+}
+.ansired {
+  color: darkred;
+}
+.ansigreen {
+  color: darkgreen;
+}
+.ansiyellow {
+  color: #c4a000;
+}
+.ansiblue {
+  color: darkblue;
+}
+.ansipurple {
+  color: darkviolet;
+}
+.ansicyan {
+  color: steelblue;
+}
+.ansigray {
+  color: gray;
+}
+/* and light for background, for the same reason */
+.ansibgblack {
+  background-color: black;
+}
+.ansibgred {
+  background-color: red;
+}
+.ansibggreen {
+  background-color: green;
+}
+.ansibgyellow {
+  background-color: yellow;
+}
+.ansibgblue {
+  background-color: blue;
+}
+.ansibgpurple {
+  background-color: magenta;
+}
+.ansibgcyan {
+  background-color: cyan;
+}
+.ansibggray {
+  background-color: gray;
+}
+div.cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent;
+  width: 100%;
+  padding: 5px;
+  /* This acts as a spacer between cells, that is outside the border */
+  margin: 0px;
+  outline: none;
+  border-left-width: 1px;
+  padding-left: 5px;
+  background: linear-gradient(to right, transparent -40px, transparent 1px, transparent 1px, transparent 100%);
+}
+div.cell.jupyter-soft-selected {
+  border-left-color: #90CAF9;
+  border-left-color: #E3F2FD;
+  border-left-width: 1px;
+  padding-left: 5px;
+  border-right-color: #E3F2FD;
+  border-right-width: 1px;
+  background: #E3F2FD;
+}
+@media print {
+  div.cell.jupyter-soft-selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected {
+  border-color: #ababab;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  div.cell.selected {
+    border-color: transparent;
+  }
+}
+div.cell.selected.jupyter-soft-selected {
+  border-left-width: 0;
+  padding-left: 6px;
+  background: linear-gradient(to right, #42A5F5 -40px, #42A5F5 7px, #E3F2FD 7px, #E3F2FD 100%);
+}
+.edit_mode div.cell.selected {
+  border-color: #66BB6A;
+  border-left-width: 0px;
+  padding-left: 6px;
+  background: linear-gradient(to right, #66BB6A -40px, #66BB6A 5px, transparent 5px, transparent 100%);
+}
+@media print {
+  .edit_mode div.cell.selected {
+    border-color: transparent;
+  }
+}
+.prompt {
+  /* This needs to be wide enough for 3 digit prompt numbers: In[100]: */
+  min-width: 14ex;
+  /* This padding is tuned to match the padding on the CodeMirror editor. */
+  padding: 0.4em;
+  margin: 0px;
+  font-family: monospace;
+  text-align: right;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+  /* Don't highlight prompt number selection */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* Use default cursor */
+  cursor: default;
+}
+@media (max-width: 540px) {
+  .prompt {
+    text-align: left;
+  }
+}
+div.inner_cell {
+  min-width: 0;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_area {
+  border: 1px solid #cfcfcf;
+  border-radius: 2px;
+  background: #f7f7f7;
+  line-height: 1.21429em;
+}
+/* This is needed so that empty prompt areas can collapse to zero height when there
+   is no content in the output_subarea and the prompt. The main purpose of this is
+   to make sure that empty JavaScript output_subareas have no height. */
+div.prompt:empty {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+div.unrecognized_cell {
+  padding: 5px 5px 5px 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.unrecognized_cell .inner_cell {
+  border-radius: 2px;
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+  border: 1px solid #cfcfcf;
+  background: #eaeaea;
+}
+div.unrecognized_cell .inner_cell a {
+  color: inherit;
+  text-decoration: none;
+}
+div.unrecognized_cell .inner_cell a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+@media (max-width: 540px) {
+  div.unrecognized_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.code_cell {
+  /* avoid page breaking on code cells when printing */
+}
+@media print {
+  div.code_cell {
+    page-break-inside: avoid;
+  }
+}
+/* any special styling for code cells that are currently running goes here */
+div.input {
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.input {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+/* input_area and input_prompt must match in top border and margin for alignment */
+div.input_prompt {
+  color: #303F9F;
+  border-top: 1px solid transparent;
+}
+div.input_area &gt; div.highlight {
+  margin: 0.4em;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+div.input_area &gt; div.highlight &gt; pre {
+  margin: 0px;
+  border: none;
+  padding: 0px;
+  background-color: transparent;
+}
+/* The following gets added to the &lt;head&gt; if it is detected that the user has a
+ * monospace font with inconsistent normal/bold/italic height.  See
+ * notebookmain.js.  Such fonts will have keywords vertically offset with
+ * respect to the rest of the text.  The user should select a better font.
+ * See: https://github.com/ipython/ipython/issues/1503
+ *
+ * .CodeMirror span {
+ *      vertical-align: bottom;
+ * }
+ */
+.CodeMirror {
+  line-height: 1.21429em;
+  /* Changed from 1em to our global default */
+  font-size: 14px;
+  height: auto;
+  /* Changed to auto to autogrow */
+  background: none;
+  /* Changed from white to allow our bg to show through */
+}
+.CodeMirror-scroll {
+  /*  The CodeMirror docs are a bit fuzzy on if overflow-y should be hidden or visible.*/
+  /*  We have found that if it is visible, vertical scrollbars appear with font size changes.*/
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.CodeMirror-lines {
+  /* In CM2, this used to be 0.4em, but in CM3 it went to 4px. We need the em value because */
+  /* we have set a different line-height and want this to scale with that. */
+  padding: 0.4em;
+}
+.CodeMirror-linenumber {
+  padding: 0 8px 0 4px;
+}
+.CodeMirror-gutters {
+  border-bottom-left-radius: 2px;
+  border-top-left-radius: 2px;
+}
+.CodeMirror pre {
+  /* In CM3 this went to 4px from 0 in CM2. We need the 0 value because of how we size */
+  /* .CodeMirror-lines */
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+}
+/*
+
+Original style from softwaremaniacs.org (c) Ivan Sagalaev &lt;Maniac@SoftwareManiacs.Org&gt;
+Adapted from GitHub theme
+
+*/
+.highlight-base {
+  color: #000;
+}
+.highlight-variable {
+  color: #000;
+}
+.highlight-variable-2 {
+  color: #1a1a1a;
+}
+.highlight-variable-3 {
+  color: #333333;
+}
+.highlight-string {
+  color: #BA2121;
+}
+.highlight-comment {
+  color: #408080;
+  font-style: italic;
+}
+.highlight-number {
+  color: #080;
+}
+.highlight-atom {
+  color: #88F;
+}
+.highlight-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.highlight-builtin {
+  color: #008000;
+}
+.highlight-error {
+  color: #f00;
+}
+.highlight-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.highlight-meta {
+  color: #AA22FF;
+}
+/* previously not defined, copying from default codemirror */
+.highlight-def {
+  color: #00f;
+}
+.highlight-string-2 {
+  color: #f50;
+}
+.highlight-qualifier {
+  color: #555;
+}
+.highlight-bracket {
+  color: #997;
+}
+.highlight-tag {
+  color: #170;
+}
+.highlight-attribute {
+  color: #00c;
+}
+.highlight-header {
+  color: blue;
+}
+.highlight-quote {
+  color: #090;
+}
+.highlight-link {
+  color: #00c;
+}
+/* apply the same style to codemirror */
+.cm-s-ipython span.cm-keyword {
+  color: #008000;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-atom {
+  color: #88F;
+}
+.cm-s-ipython span.cm-number {
+  color: #080;
+}
+.cm-s-ipython span.cm-def {
+  color: #00f;
+}
+.cm-s-ipython span.cm-variable {
+  color: #000;
+}
+.cm-s-ipython span.cm-operator {
+  color: #AA22FF;
+  font-weight: bold;
+}
+.cm-s-ipython span.cm-variable-2 {
+  color: #1a1a1a;
+}
+.cm-s-ipython span.cm-variable-3 {
+  color: #333333;
+}
+.cm-s-ipython span.cm-comment {
+  color: #408080;
+  font-style: italic;
+}
+.cm-s-ipython span.cm-string {
+  color: #BA2121;
+}
+.cm-s-ipython span.cm-string-2 {
+  color: #f50;
+}
+.cm-s-ipython span.cm-meta {
+  color: #AA22FF;
+}
+.cm-s-ipython span.cm-qualifier {
+  color: #555;
+}
+.cm-s-ipython span.cm-builtin {
+  color: #008000;
+}
+.cm-s-ipython span.cm-bracket {
+  color: #997;
+}
+.cm-s-ipython span.cm-tag {
+  color: #170;
+}
+.cm-s-ipython span.cm-attribute {
+  color: #00c;
+}
+.cm-s-ipython span.cm-header {
+  color: blue;
+}
+.cm-s-ipython span.cm-quote {
+  color: #090;
+}
+.cm-s-ipython span.cm-link {
+  color: #00c;
+}
+.cm-s-ipython span.cm-error {
+  color: #f00;
+}
+.cm-s-ipython span.cm-tab {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAMCAYAAAAkuj5RAAAAAXNSR0IArs4c6QAAAGFJREFUSMft1LsRQFAQheHPowAKoACx3IgEKtaEHujDjORSgWTH/ZOdnZOcM/sgk/kFFWY0qV8foQwS4MKBCS3qR6ixBJvElOobYAtivseIE120FaowJPN75GMu8j/LfMwNjh4HUpwg4LUAAAAASUVORK5CYII=);
+  background-position: right;
+  background-repeat: no-repeat;
+}
+div.output_wrapper {
+  /* this position must be relative to enable descendents to be absolute within it */
+  position: relative;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  z-index: 1;
+}
+/* class for the output area when it should be height-limited */
+div.output_scroll {
+  /* ideally, this would be max-height, but FF barfs all over that */
+  height: 24em;
+  /* FF needs this *and the wrapper* to specify full width, or it will shrinkwrap */
+  width: 100%;
+  overflow: auto;
+  border-radius: 2px;
+  -webkit-box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.8);
+  display: block;
+}
+/* output div while it is collapsed */
+div.output_collapsed {
+  margin: 0px;
+  padding: 0px;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+div.out_prompt_overlay {
+  height: 100%;
+  padding: 0px 0.4em;
+  position: absolute;
+  border-radius: 2px;
+}
+div.out_prompt_overlay:hover {
+  /* use inner shadow to get border that is computed the same on WebKit/FF */
+  -webkit-box-shadow: inset 0 0 1px #000;
+  box-shadow: inset 0 0 1px #000;
+  background: rgba(240, 240, 240, 0.5);
+}
+div.output_prompt {
+  color: #D84315;
+}
+/* This class is the outer container of all output sections. */
+div.output_area {
+  padding: 0px;
+  page-break-inside: avoid;
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+div.output_area .MathJax_Display {
+  text-align: left !important;
+}
+div.output_area 
+div.output_area 
+div.output_area img,
+div.output_area svg {
+  max-width: 100%;
+  height: auto;
+}
+div.output_area img.unconfined,
+div.output_area svg.unconfined {
+  max-width: none;
+}
+/* This is needed to protect the pre formating from global settings such
+   as that of bootstrap */
+.output {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: vertical;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.output_area {
+    /* Old browsers */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-box-align: stretch;
+    display: -moz-box;
+    -moz-box-orient: vertical;
+    -moz-box-align: stretch;
+    display: box;
+    box-orient: vertical;
+    box-align: stretch;
+    /* Modern browsers */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+div.output_area pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  color: black;
+  background-color: transparent;
+  border-radius: 0;
+}
+/* This class is for the output subarea inside the output_area and after
+   the prompt div. */
+div.output_subarea {
+  overflow-x: auto;
+  padding: 0.4em;
+  /* Old browsers */
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  /* Modern browsers */
+  flex: 1;
+  max-width: calc(100% - 14ex);
+}
+div.output_scroll div.output_subarea {
+  overflow-x: visible;
+}
+/* The rest of the output_* classes are for special styling of the different
+   output types */
+/* all text output has this class: */
+div.output_text {
+  text-align: left;
+  color: #000;
+  /* This has to match that of the the CodeMirror class line-height below */
+  line-height: 1.21429em;
+}
+/* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
+div.output_stderr {
+  background: #fdd;
+  /* very light red background for stderr */
+}
+div.output_latex {
+  text-align: left;
+}
+/* Empty output_javascript divs should have no height */
+div.output_javascript:empty {
+  padding: 0;
+}
+.js-error {
+  color: darkred;
+}
+/* raw_input styles */
+div.raw_input_container {
+  line-height: 1.21429em;
+  padding-top: 5px;
+}
+pre.raw_input_prompt {
+  /* nothing needed here. */
+}
+input.raw_input {
+  font-family: monospace;
+  font-size: inherit;
+  color: inherit;
+  width: auto;
+  /* make sure input baseline aligns with prompt */
+  vertical-align: baseline;
+  /* padding + margin = 0.5em between prompt and cursor */
+  padding: 0em 0.25em;
+  margin: 0em 0.25em;
+}
+input.raw_input:focus {
+  box-shadow: none;
+}
+p.p-space {
+  margin-bottom: 10px;
+}
+div.output_unrecognized {
+  padding: 5px;
+  font-weight: bold;
+  color: red;
+}
+div.output_unrecognized a {
+  color: inherit;
+  text-decoration: none;
+}
+div.output_unrecognized a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+.rendered_html {
+  color: #000;
+  /* any extras will just be numbers: */
+}
+
+
+
+.rendered_html :link {
+  text-decoration: underline;
+}
+.rendered_html :visited {
+  text-decoration: underline;
+}
+
+
+
+
+
+
+.rendered_html h1:first-child {
+  margin-top: 0.538em;
+}
+.rendered_html h2:first-child {
+  margin-top: 0.636em;
+}
+.rendered_html h3:first-child {
+  margin-top: 0.777em;
+}
+.rendered_html h4:first-child {
+  margin-top: 1em;
+}
+.rendered_html h5:first-child {
+  margin-top: 1em;
+}
+.rendered_html h6:first-child {
+  margin-top: 1em;
+}
+
+
+
+
+
+
+
+
+.rendered_html * + ul {
+  margin-top: 1em;
+}
+.rendered_html * + ol {
+  margin-top: 1em;
+}
+
+
+.rendered_html pre,
+
+
+
+.rendered_html tr,
+.rendered_html th,
+
+.rendered_html td,
+
+
+.rendered_html * + table {
+  margin-top: 1em;
+}
+
+.rendered_html * + p {
+  margin-top: 1em;
+}
+
+.rendered_html * + img {
+  margin-top: 1em;
+}
+.rendered_html img,
+
+.rendered_html img.unconfined,
+
+div.text_cell {
+  /* Old browsers */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: stretch;
+  display: -moz-box;
+  -moz-box-orient: horizontal;
+  -moz-box-align: stretch;
+  display: box;
+  box-orient: horizontal;
+  box-align: stretch;
+  /* Modern browsers */
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+@media (max-width: 540px) {
+  div.text_cell &gt; div.prompt {
+    display: none;
+  }
+}
+div.text_cell_render {
+  /*font-family: "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;*/
+  outline: none;
+  resize: none;
+  width: inherit;
+  border-style: none;
+  padding: 0.5em 0.5em 0.5em 0.4em;
+  color: #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+a.anchor-link:link {
+  text-decoration: none;
+  padding: 0px 20px;
+  visibility: hidden;
+}
+h1:hover .anchor-link,
+h2:hover .anchor-link,
+h3:hover .anchor-link,
+h4:hover .anchor-link,
+h5:hover .anchor-link,
+h6:hover .anchor-link {
+  visibility: visible;
+}
+.text_cell.rendered .input_area {
+  display: none;
+}
+.text_cell.rendered 
+.text_cell.unrendered .text_cell_render {
+  display: none;
+}
+.cm-header-1,
+.cm-header-2,
+.cm-header-3,
+.cm-header-4,
+.cm-header-5,
+.cm-header-6 {
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.cm-header-1 {
+  font-size: 185.7%;
+}
+.cm-header-2 {
+  font-size: 157.1%;
+}
+.cm-header-3 {
+  font-size: 128.6%;
+}
+.cm-header-4 {
+  font-size: 110%;
+}
+.cm-header-5 {
+  font-size: 100%;
+  font-style: italic;
+}
+.cm-header-6 {
+  font-size: 100%;
+  font-style: italic;
+}
+&lt;/style&gt;
+&lt;style type="text/css"&gt;.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #888888 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0044DD } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sa { color: #BA2121 } /* Literal.String.Affix */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #0000FF } /* Name.Function.Magic */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .vm { color: #19177C } /* Name.Variable.Magic */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */&lt;/style&gt;
+&lt;style type="text/css"&gt;
+/* Temporary definitions which will become obsolete with Notebook release 5.0 */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+&lt;/style&gt;&lt;body&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;In looking for interesting data sets to play with I'm often searching through Kaggle thinking 'this looks awesome, but if only it had this attribute' or 'data covering a different time period'. Most recently, this happened when looking through the &lt;a href="https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings"&gt;'Kaggle data set for metacritic'&lt;/a&gt;. The natural next step was to start looking at scraping my own data, which is the process I want to cover in this post.&lt;/p&gt;
+&lt;p&gt;Inevitably the html syntax for metacritic has changed from the process documented in the Kaggle kernel, so a reworking of the html parsing has been required, which also makes this an excellent excuse to get some practise in natural languages and parsing, thanks Chomsky!&lt;/p&gt;
+&lt;p&gt;Edit:&lt;/p&gt;
+&lt;h3 id="Requesting-pages"&gt;Requesting pages&lt;a class="anchor-link" href="#Requesting-pages"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The search functionality within metacritic allows you to pull up all the games for a &lt;a href="https://www.metacritic.com/browse/games/score/metascore/year/all/filtered?year_selected=2017&amp;amp;sort=desc&amp;amp;page=0"&gt;given year&lt;/a&gt;. While it's possible to use the same techniques to cycle through all years and pull out the max page, in an effort to stick to the &lt;a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01"&gt;ethics of scraping&lt;/a&gt;, and request data at a reasonable rate, this sample code just pulls the first page.&lt;/p&gt;
+&lt;p&gt;We've also initialised a pandas dataframe, ready for the information to be stored.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;requests&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;bs4&lt;/span&gt; &lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;pd&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;seaborn&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;sns&lt;/span&gt;
+
+&lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;all&amp;quot;&lt;/span&gt;  &lt;span class="c1"&gt;# &amp;quot;all&amp;quot;, &amp;quot;ps4, &amp;quot;&amp;quot;xboxone&amp;quot;, &amp;quot;pc&amp;quot;, &amp;quot;ps3&amp;quot;, &amp;quot;wii-u&amp;quot;, etc.&lt;/span&gt;
+&lt;span class="n"&gt;year&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2018&lt;/span&gt;
+&lt;span class="n"&gt;max_page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+
+&lt;span class="n"&gt;meta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DataFrame&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;columns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;platform&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;developer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;critic_score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;critic_score_no&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user_score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;user_score_no&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;genre&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;release_date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;rating&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;max_page&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://www.metacritic.com/browse/games/score/metascore/year/all/filtered?year_selected=&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;&amp;amp;sort=desc&amp;amp;page=&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;soup_main&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;html.parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Write the requested page to a text file for analysis of html structure&lt;/span&gt;
+&lt;span class="c1"&gt;#file = open(r&amp;#39;metacritic_output_main.txt&amp;#39;, &amp;#39;w&amp;#39;, encoding=&amp;#39;utf-8&amp;#39;)&lt;/span&gt;
+&lt;span class="c1"&gt;#file.write(str(soup_main.prettify))&lt;/span&gt;
+&lt;span class="c1"&gt;#file.close()&lt;/span&gt;
+
+&lt;span class="c1"&gt;# For demonstration purposes, lets just print the first few lines..&lt;/span&gt;
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;soup_main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;prettify&lt;/span&gt;&lt;span class="p"&gt;)[:&lt;/span&gt;&lt;span class="mi"&gt;207&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;&amp;lt;bound method Tag.prettify of &amp;lt;!DOCTYPE html PUBLIC &amp;#34;-//W3C//DTD HTML 4.01//EN&amp;#34;
+   &amp;#34;https://www.w3.org/TR/html4/strict.dtd&amp;#34;&amp;gt;
+
+&amp;lt;html xml:lang=&amp;#34;en&amp;#34;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;title&amp;gt;Best Video Games for 2018 - Metacritic&amp;lt;/title&amp;gt;
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Parsing"&gt;Parsing&lt;a class="anchor-link" href="#Parsing"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;While the search page gives summary information for each of the games, the individual game pages have additional useful content. So the first step is to pull the url for each game, we'll then request each of the pages and extract the relevant information.&lt;/p&gt;
+&lt;p&gt;Writing the parsing commands is time consuming and requires some trial and error, but hopefully this gives a good overview of a varied range of data types. Some exception catching is required where data isn't present, this is something you'll inevitable come across during testing.&lt;/p&gt;
+&lt;p&gt;Finally the data is written to the pandas dataframe, following some definition of data type and conditioning. In this demonstration code, I'm just writing the first three games in the search to the database.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;link&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+    
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;game&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;soup_main&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;product_wrap&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;game&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;basic_stat product_title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;href&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;link&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;  &lt;span class="c1"&gt;# Remove the indexing to add all of the games to the database&lt;/span&gt;
+    &lt;span class="n"&gt;URL&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;http://www.metacritic.com&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;
+    &lt;span class="n"&gt;headers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;User-Agent&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="n"&gt;request&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;requests&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;URL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;headers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;soup_page&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;BeautifulSoup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;content&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;decode&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;html.parser&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;product_title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="n"&gt;platform&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;product_title&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;developer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary_detail developer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;developer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+    &lt;span class="n"&gt;critic_score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;itemprop&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;ratingValue&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;critic_score&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;tbd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;critic_score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;990&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;critic_score_no&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;details main_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;count&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_text&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;critic_score_no&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;990&lt;/span&gt;
+    &lt;span class="n"&gt;user_score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;compile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;metascore_w user large&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;user_score&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;tbd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_score&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_score_no&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;details side_details&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;div&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;user_score_no&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;990&lt;/span&gt;
+    &lt;span class="n"&gt;genre&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary_detail product_genre&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="p"&gt;)):&lt;/span&gt;  &lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;  &lt;span class="c1"&gt;# Select primary genre entry&lt;/span&gt;
+    &lt;span class="n"&gt;release_date&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary_detail release_data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;        
+    &lt;span class="k"&gt;try&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;soup_page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;summary_detail product_rating&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;span&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;class_&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;contents&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="k"&gt;except&lt;/span&gt; &lt;span class="ne"&gt;AttributeError&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;rating&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kc"&gt;None&lt;/span&gt;
+
+    &lt;span class="n"&gt;meta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;title&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;platform&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;platform&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;developer&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;developer&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;critic_score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;critic_score&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;critic_score_no&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;critic_score_no&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;user_score&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;float&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_score&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;user_score_no&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;int&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;user_score_no&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;genre&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;genre&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;release_date&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;release_date&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;rating&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rating&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+                    &lt;span class="s2"&gt;&amp;quot;url&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="n"&gt;ignore_index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="kc"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;#print(&amp;#39;Output: &amp;#39;, len(meta), &amp;#39; of up to&amp;#39;, max_page*100)&lt;/span&gt;
+
+&lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;head&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;                   title       platform         developer critic_score  \
+0  Red Dead Redemption 2       Xbox One    Rockstar Games           97   
+1  Red Dead Redemption 2  PlayStation 4    Rockstar Games           97   
+2             God of War  PlayStation 4  SCE Santa Monica           94   
+
+  critic_score_no user_score user_score_no             genre  release_date  \
+0              33         74          1912  Action Adventure  Oct 26, 2018   
+1              98         79          7163  Action Adventure  Oct 26, 2018   
+2             118         91          9437  Action Adventure  Apr 20, 2018   
+
+  rating                                        url  
+0      M       /game/xbox-one/red-dead-redemption-2  
+1      M  /game/playstation-4/red-dead-redemption-2  
+2      M             /game/playstation-4/god-of-war  
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;h3 id="Analysing-the-data"&gt;Analysing the data&lt;a class="anchor-link" href="#Analysing-the-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I'm still keen to get to grips with the dataset properly, and I have a few theories I'd like to test out (for example, can the stats really back-up the fanboys). But just to give a quick impression, lets load the full data, do a quick clean-up and take a look a quick-look at the relationship between critic and user scores. Feel free to download the data and take a look yourself.&lt;/p&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class=" highlight hl-ipython3"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;meta&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;data/meta_2018.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set datetime data type and create year feature&lt;/span&gt;
+&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;release_date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pd&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;release_date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;release_date&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;year&lt;/span&gt;
+&lt;span class="c1"&gt;#meta[&amp;#39;release_date&amp;#39;] = meta[&amp;#39;release_date&amp;#39;].dt.date&lt;/span&gt;
+
+&lt;span class="c1"&gt;# Set feature data types&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;developer&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;genre&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;year&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;category&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critic_score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;critic_score_no&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;user_score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;user_score_no&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;astype&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;int&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    
+&lt;span class="c1"&gt;# Set null values to np.nan&lt;/span&gt;
+&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;col&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;critic_score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;critic_score_no&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;user_score&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;user_score_no&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
+    &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;col&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;990&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;nan&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;sns&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;regplot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;critic_score&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;meta&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;user_score&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
+
+
+
+&lt;div class="output_text output_subarea output_execute_result"&gt;
+&lt;pre&gt;&amp;lt;matplotlib.axes._subplots.AxesSubplot at 0x192df45b198&amp;gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div class="output_area"&gt;
+
+&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+
+
+&lt;div class="output_png output_subarea "&gt;
+&lt;img src="data:image/png;base64,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
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+ 
+
+&lt;/body&gt;
+&lt;script type="text/javascript"&gt;if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
+    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: 'center'," +
+        "    displayIndent: '0em'," +
+        "    showMathMenu: true," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['$','$'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        " linebreaks: { automatic: true, width: '95% container' }, " +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'black ! important'} }" +
+        "    } " +
+        "}); ";
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+&lt;/script&gt;
+</content><category term="python"></category><category term="webscraping"></category><category term="metacritic"></category></entry><entry><title>Visualising Geospatial Data</title><link href="https://davebloomer.github.io/visualising-geospatial-data.html" rel="alternate"></link><published>2019-02-08T00:00:00+00:00</published><updated>2019-02-08T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-08:/visualising-geospatial-data.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;

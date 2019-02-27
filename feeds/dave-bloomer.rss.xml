@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Blog</description><lastBuildDate>Fri, 08 Feb 2019 00:00:00 +0000</lastBuildDate><item><title>Visualising Geospatial Data</title><link>https://davebloomer.github.io/visualising-geospatial-data.html</link><description>
+<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Blog</description><lastBuildDate>Wed, 27 Feb 2019 00:00:00 +0000</lastBuildDate><item><title>Webscraping Metacritic</title><link>https://davebloomer.github.io/webscraping-metacritic.html</link><description>
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;In looking for interesting data sets to play with I'm often searching through Kaggle thinking 'this looks awesome, but if only it had this attribute' or 'data covering a different time period'. Most recently, this happened when looking through the &lt;a href="https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings"&gt;'Kaggle data set for metacritic'&lt;/a&gt;. The natural next step was to start looking at scraping my own data, which is the process I want to cover in this post.&lt;/p&gt;
+&lt;p&gt;Inevitably the html syntax for metacritic has changed from the process documented in the Kaggle kernel, so a reworking of the html parsing has been required, which also makes this an excellent excuse to get some practise in natural languages and parsing, thanks Chomsky!&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Bloomer</dc:creator><pubDate>Wed, 27 Feb 2019 00:00:00 +0000</pubDate><guid isPermaLink="false">tag:davebloomer.github.io,2019-02-27:/webscraping-metacritic.html</guid><category>python</category><category>webscraping</category><category>metacritic</category></item><item><title>Visualising Geospatial Data</title><link>https://davebloomer.github.io/visualising-geospatial-data.html</link><description>
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
