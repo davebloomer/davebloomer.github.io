@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Dave Bloomer - python</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/python.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-02-27T00:00:00+00:00</updated><entry><title>Webscraping Metacritic</title><link href="https://davebloomer.github.io/webscraping-metacritic.html" rel="alternate"></link><published>2019-02-27T00:00:00+00:00</published><updated>2019-02-27T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-27:/webscraping-metacritic.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Data is the new oil - python</title><link href="/" rel="alternate"></link><link href="/feeds/python.atom.xml" rel="self"></link><id>/</id><updated>2019-02-27T00:00:00+00:00</updated><entry><title>Webscraping Metacritic</title><link href="/webscraping-metacritic.html" rel="alternate"></link><published>2019-02-27T00:00:00+00:00</published><updated>2019-02-27T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-02-27:/webscraping-metacritic.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -983,7 +983,6 @@ h6:hover .anchor-link {
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;In looking for interesting data sets to play with I'm often searching through Kaggle thinking 'this looks awesome, but if only it had this attribute' or 'data covering a different time period'. Most recently, this happened when looking through the &lt;a href="https://www.kaggle.com/rush4ratio/video-game-sales-with-ratings"&gt;'Kaggle data set for metacritic'&lt;/a&gt;. The natural next step was to start looking at scraping my own data, which is the process I want to cover in this post.&lt;/p&gt;
 &lt;p&gt;Inevitably the html syntax for metacritic has changed from the process documented in the Kaggle kernel, so a reworking of the html parsing has been required, which also makes this an excellent excuse to get some practise in natural languages and parsing, thanks Chomsky!&lt;/p&gt;
-&lt;p&gt;Edit:&lt;/p&gt;
 &lt;h3 id="Requesting-pages"&gt;Requesting pages&lt;a class="anchor-link" href="#Requesting-pages"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;The search functionality within metacritic allows you to pull up all the games for a &lt;a href="https://www.metacritic.com/browse/games/score/metascore/year/all/filtered?year_selected=2017&amp;amp;sort=desc&amp;amp;page=0"&gt;given year&lt;/a&gt;. While it's possible to use the same techniques to cycle through all years and pull out the max page, in an effort to stick to the &lt;a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01"&gt;ethics of scraping&lt;/a&gt;, and request data at a reasonable rate, this sample code just pulls the first page.&lt;/p&gt;
 &lt;p&gt;We've also initialised a pandas dataframe, ready for the information to be stored.&lt;/p&gt;
 
@@ -1154,7 +1153,7 @@ h6:hover .anchor-link {
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Analysing-the-data"&gt;Analysing the data&lt;a class="anchor-link" href="#Analysing-the-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I'm still keen to get to grips with the dataset properly, and I have a few theories I'd like to test out (for example, can the stats really back-up the fanboys). But just to give a quick impression, lets load the full data, do a quick clean-up and take a look a quick-look at the relationship between critic and user scores. Feel free to download the data and take a look yourself.&lt;/p&gt;
+&lt;h3 id="Analysing-the-data"&gt;Analysing the data&lt;a class="anchor-link" href="#Analysing-the-data"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;I'm still keen to get to grips with the dataset properly, and I have a few theories I'd like to test out (for example, do the stats really back-up that Nintendo fanboys view games through rose-tinted spectacles). But just to give a quick impression, lets load the full data, do a quick clean-up and take a look a quick-look at the relationship between critic and user scores. Feel free to download the data and take a look yourself.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1256,7 +1255,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="webscraping"></category><category term="metacritic"></category></entry><entry><title>Visualising Geospatial Data</title><link href="https://davebloomer.github.io/visualising-geospatial-data.html" rel="alternate"></link><published>2019-02-08T00:00:00+00:00</published><updated>2019-02-08T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-08:/visualising-geospatial-data.html</id><summary type="html">
+</content><category term="python"></category><category term="webscraping"></category><category term="metacritic"></category></entry><entry><title>Visualising Geospatial Data</title><link href="/visualising-geospatial-data.html" rel="alternate"></link><published>2019-02-08T00:00:00+00:00</published><updated>2019-02-08T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-02-08:/visualising-geospatial-data.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -2639,7 +2638,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="visualisation"></category><category term="geopandas"></category><category term="geoplot"></category><category term="windows"></category></entry><entry><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)</title><link href="https://davebloomer.github.io/pelican-ipynb-blog-pt2.html" rel="alternate"></link><published>2019-02-01T00:00:00+00:00</published><updated>2019-02-01T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-02-01:/pelican-ipynb-blog-pt2.html</id><summary type="html">
+</content><category term="python"></category><category term="visualisation"></category><category term="geopandas"></category><category term="geoplot"></category><category term="windows"></category></entry><entry><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)</title><link href="/pelican-ipynb-blog-pt2.html" rel="alternate"></link><published>2019-02-01T00:00:00+00:00</published><updated>2019-02-01T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-02-01:/pelican-ipynb-blog-pt2.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -3731,7 +3730,7 @@ MENUITEMS = (('Archives', '/archives.html'),)
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="blog"></category><category term="pelican"></category><category term="ipynb"></category><category term="jupyter"></category><category term="git"></category><category term="anaconda"></category></entry><entry><title>Visualising Algorithms with Python</title><link href="https://davebloomer.github.io/visualising-algorithms-python.html" rel="alternate"></link><published>2019-01-29T00:00:00+00:00</published><updated>2019-01-29T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-01-29:/visualising-algorithms-python.html</id><summary type="html">
+</content><category term="python"></category><category term="blog"></category><category term="pelican"></category><category term="ipynb"></category><category term="jupyter"></category><category term="git"></category><category term="anaconda"></category></entry><entry><title>Visualising Algorithms with Python</title><link href="/visualising-algorithms-python.html" rel="alternate"></link><published>2019-01-29T00:00:00+00:00</published><updated>2019-01-29T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-01-29:/visualising-algorithms-python.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
@@ -5070,7 +5069,7 @@ h6:hover .anchor-link {
     (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
 }
 &lt;/script&gt;
-</content><category term="python"></category><category term="visualisation"></category><category term="sort"></category><category term="search"></category></entry><entry><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 1)</title><link href="https://davebloomer.github.io/pelican-ipynb-blog-pt1.html" rel="alternate"></link><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-01-28:/pelican-ipynb-blog-pt1.html</id><summary type="html">
+</content><category term="python"></category><category term="visualisation"></category><category term="sort"></category><category term="search"></category></entry><entry><title>Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 1)</title><link href="/pelican-ipynb-blog-pt1.html" rel="alternate"></link><published>2019-01-28T00:00:00+00:00</published><updated>2019-01-28T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-01-28:/pelican-ipynb-blog-pt1.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
