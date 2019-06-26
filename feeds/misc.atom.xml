@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Data is the new oil - misc</title><link href="/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>/</id><updated>2019-01-27T00:00:00+00:00</updated><entry><title>Hello world</title><link href="/hello-world.html" rel="alternate"></link><published>2019-01-27T00:00:00+00:00</published><updated>2019-01-27T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:None,2019-01-27:/hello-world.html</id><summary type="html">
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Data is the new oil - misc</title><link href="https://davebloomer.github.io/" rel="alternate"></link><link href="https://davebloomer.github.io/feeds/misc.atom.xml" rel="self"></link><id>https://davebloomer.github.io/</id><updated>2019-01-27T00:00:00+00:00</updated><entry><title>Hello world</title><link href="https://davebloomer.github.io/hello-world.html" rel="alternate"></link><published>2019-01-27T00:00:00+00:00</published><updated>2019-01-27T00:00:00+00:00</updated><author><name>Dave Bloomer</name></author><id>tag:davebloomer.github.io,2019-01-27:/hello-world.html</id><summary type="html">
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;

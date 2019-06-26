@@ -25,16 +25,16 @@
 
 
 <meta name="author" content="Dave Bloomer" />
-<meta name="description" content="On to the second part of the series documenting the process of setting up this blog. This post will cover setting up GitHub pages and pushing your website, looking at options for customisation such as theme, and finally creating some batch files to streamline the process for adding a new post to the blog to avoid excessive use of terminal. GitHub Pages and gbp-import¶ If you don&#39;t already have one, create an account on GitHub Create a new repository with the name yoursite.github.io without creating a readme or .gitignore Return to terminal and install ghp-import using: pip install ghp-pages" />
-<meta name="keywords" content="python, blog, pelican, ipynb, jupyter, git, anaconda">
+<meta name="description" content="With exams over I can finally start concentrating on finding a job posting more to my blog. I have been working on a Sudoku solver and puzzle generator over the past couple of months and was keen to write this up now I have the time, but I felt frustrated that the code wasn&#39;t really going to be of use without some form of web based user interface. A Web Based Python UI?¶After exploring multiple options I&#39;m still not convinced there is an ideal solution that doesn&#39;t involve learning Javascript or migrating the site from GitHub. If I&#39;m overlooking something obvious please leave a comment. The best solution I can find is to impliment a degree of interactivity using Jupyter Notebook Widgets, unfortunately this interactivity is lost when converting the notebooks to html using Pelican, so it&#39;s still neccessary to link to the file hosted on GitHub. Either way, I&#39;m excited about the potential this functionality offers for some other projects I have in mind for the future." />
+<meta name="keywords" content="python, blog, pelican, ipynb, jupyter">
 
 <meta property="og:site_name" content="Data is the new oil"/>
-<meta property="og:title" content="Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)"/>
-<meta property="og:description" content="On to the second part of the series documenting the process of setting up this blog. This post will cover setting up GitHub pages and pushing your website, looking at options for customisation such as theme, and finally creating some batch files to streamline the process for adding a new post to the blog to avoid excessive use of terminal. GitHub Pages and gbp-import¶ If you don&#39;t already have one, create an account on GitHub Create a new repository with the name yoursite.github.io without creating a readme or .gitignore Return to terminal and install ghp-import using: pip install ghp-pages"/>
+<meta property="og:title" content="Python User Interface (Jupyter Widgets)"/>
+<meta property="og:description" content="With exams over I can finally start concentrating on finding a job posting more to my blog. I have been working on a Sudoku solver and puzzle generator over the past couple of months and was keen to write this up now I have the time, but I felt frustrated that the code wasn&#39;t really going to be of use without some form of web based user interface. A Web Based Python UI?¶After exploring multiple options I&#39;m still not convinced there is an ideal solution that doesn&#39;t involve learning Javascript or migrating the site from GitHub. If I&#39;m overlooking something obvious please leave a comment. The best solution I can find is to impliment a degree of interactivity using Jupyter Notebook Widgets, unfortunately this interactivity is lost when converting the notebooks to html using Pelican, so it&#39;s still neccessary to link to the file hosted on GitHub. Either way, I&#39;m excited about the potential this functionality offers for some other projects I have in mind for the future."/>
 <meta property="og:locale" content="en_US"/>
-<meta property="og:url" content="https://davebloomer.github.io/pelican-ipynb-blog-pt2.html"/>
+<meta property="og:url" content="https://davebloomer.github.io/jupyter-ui.html"/>
 <meta property="og:type" content="article"/>
-<meta property="article:published_time" content="2019-02-01 00:00:00+00:00"/>
+<meta property="article:published_time" content="2019-06-25 00:00:00+01:00"/>
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="https://davebloomer.github.io/author/dave-bloomer.html">
 <meta property="article:section" content="python"/>
@@ -43,11 +43,9 @@
 <meta property="article:tag" content="pelican"/>
 <meta property="article:tag" content="ipynb"/>
 <meta property="article:tag" content="jupyter"/>
-<meta property="article:tag" content="git"/>
-<meta property="article:tag" content="anaconda"/>
 <meta property="og:image" content="">
 
-  <title>Data is the new oil &ndash; Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)</title>
+  <title>Data is the new oil &ndash; Python User Interface (Jupyter Widgets)</title>
 
 </head>
 <body>
@@ -108,9 +106,9 @@
 <article class="single">
   <header>
       
-    <h1 id="pelican-ipynb-blog-pt2">Create a blog with Anaconda, Pelican, Jupyter Notebooks (ipynb) and Github Pages (Pt. 2)</h1>
+    <h1 id="jupyter-ui">Python User Interface (Jupyter Widgets)</h1>
     <p>
-          Posted on Fri 01 February 2019 in <a href="https://davebloomer.github.io/category/python.html">python</a>
+          Posted on Tue 25 June 2019 in <a href="https://davebloomer.github.io/category/python.html">python</a>
 
 
     </p>
@@ -1094,78 +1092,10 @@ h6:hover .anchor-link {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On to the second part of the series documenting the process of setting up this blog. This post will cover setting up GitHub pages and pushing your website, looking at options for customisation such as theme, and finally creating some batch files to streamline the process for adding a new post to the blog to avoid excessive use of terminal.</p>
-<h3 id="GitHub-Pages-and-gbp-import">GitHub Pages and gbp-import<a class="anchor-link" href="#GitHub-Pages-and-gbp-import">&#182;</a></h3><ul>
-<li>If you don't already have one, <a href="https://github.com/join/">create an account</a> on GitHub</li>
-<li>Create a new repository with the name <code>yoursite.github.io</code> without creating a readme or .gitignore</li>
-<li>Return to terminal and install ghp-import using: <code>pip install ghp-pages</code><ul>
-<li>nb: ghp-pages is available on conda-forge, but I would recommend installing from pip as I encountered a number of issues with the conda-forge install</li>
-</ul>
-</li>
-<li>Update the following line in: <code>publishconf.py</code>:</li>
-</ul>
-
-<pre><code>SITEURL = 'https://yoursite.github.io'</code></pre>
-<ul>
-<li>Regenerate the blogs content using publishing configuration in Pelican: <code>pelican content -s publishconf.py</code></li>
-<li>Specify the source and GitHub repository: <code>git remote add origin https://github.com/yoursite/yoursite.github.io.git</code><ul>
-<li>If this is your first time using Git in console, you might be required to log-in using your GitHub credentials</li>
-</ul>
-</li>
-<li>Use ghp-pages to commit the output folder to the master branch: <code>ghp-import output -b master</code></li>
-<li>Push your site to GitHub Pages: <code>git push origin master</code></li>
-</ul>
-<p>If the wind was blowing in the right direction, your website should now be available to view at yoursite.github.io/. It can take up to ten minutes for your content to become available at the address, so don't panic if it doesn't work right away. But after ten minutes, panic away.</p>
-<p>Some other useful commands:</p>
-<p>List remote repositories: <code>git remote -v</code>
-Delete remote repository: <code>git remote remove origin</code></p>
-<h3 id="Automising">Automising<a class="anchor-link" href="#Automising">&#182;</a></h3><p>As we've seen, every time you change a setting, fix a typo you've just spotted or upload a new post, you'll need to run several comments within terminal. In the next step, we'll be installing and customising a theme, so here's one approach to automising common processes to save on your RSI.</p>
-<p>Create a shortcut in a suitable location, then you can specify the target to perform one of the following useful tasks. You'll need to update the windows directories and python environment name. Hopefully the format is fairly intuitive if there are any other processes you might wish to automate.</p>
-
-<pre><code># Activate environment, navigate to blog folder and run local configuration of pelican 
-%windir%\System32\cmd.exe "/K" C:\Users\user\Anaconda3\Scripts\activate.bat C:\Users\user\Anaconda3\envs\ipynblog &amp;&amp; cd Documents\ipynblog &amp;&amp; pelican content
-
-# Run local server:
-%windir%\System32\cmd.exe "/K" C:\Users\user\Anaconda3\Scripts\activate.bat C:\Users\Dave\Anaconda3\envs\ipynblog &amp;&amp; cd Documents\ipynblog\output &amp;&amp; python -m http.server
-
-# Activate environment, navigate to blog folder, run publish configuration of pelican and upload
-%windir%\System32\cmd.exe "/K" C:\Users\user\Anaconda3\Scripts\activate.bat C:\Users\user\Anaconda3\envs\ipynblog &amp;&amp; cd Documents\ipynblog &amp;&amp; pelican content -s publishconf.py &amp;&amp; ghp-import output -b master &amp;&amp; git push origin master</code></pre>
-<h3 id="Customising-your-blog">Customising your blog<a class="anchor-link" href="#Customising-your-blog">&#182;</a></h3><p>There are <a href="http://www.pelicanthemes.com/">loads of great themes</a> available for Pelican. We'll be walking through installing <a href="https://github.com/alexandrevicenzi/Flex/">Flex by Alexandre Vicenzi</a>, which just so happens to be the one I'm using on my blog. Pelican has a <a href="http://docs.getpelican.com/en/3.6.3/pelican-themes.html">theme manager</a> which you can use to install the blog, but we'll be taking a different approach and cloning the relevant GitHub repository.</p>
-<ul>
-<li>Create a home for your themes in the blogs directory: <code>mkdir themes</code></li>
-<li>Navigate to themes directory: <code>cd themes</code></li>
-<li>Clone the GitHub repository containing the theme: <code>git clone https://github.com/alexandrevicenzi/Flex</code></li>
-<li>Open <code>pelicanconf.py</code> to start configuration:</li>
-</ul>
-<p>Hopefully you'll want to put your individual twist on the theme, and there are <a href="https://github.com/alexandrevicenzi/Flex/wiki/Custom-Settings/">plenty of options for customisation</a> within Flex. But here's a few things to get started..</p>
-
-<pre><code>THEME = 'themes\Flex-custom'
-SITETITLE = SITENAME
-SITESUBTITLE = 'A Data Science Blog'
-SITEDESCRIPTION = 'Welcome To My Blog'
-COPYRIGHT_YEAR = 2019
-
-MAIN_MENU = True
-
-LINKS = (('Site', 'http://url.com'),)
-
-SOCIAL = (('linkedin', 'http://www.linkedin.com/in/...'),
-          ('instagram', 'http://www.instagram.com/...'),
-          ('github', 'https://www.github.com/...'),)
-
-MENUITEMS = (('Archives', '/archives.html'),)
-             ('Categories', '/categories.html'),
-             ('Tags', '/tags.html'),)</code></pre>
-<p>Use <code>pelican content</code> or the shortcut created earlier to take a look at your applied theme. Another easy way to customise your site is by updating the css (cascading style sheet):</p>
-<ul>
-<li>Navigate to the directory <code>..\themes\Flex\static\stylesheet</code></li>
-<li>Create a copy of <code>variables.less</code> and open it up</li>
-<li>Modify the <a href="https://www.google.com/search?q=hex+color/">hex colours</a> of the various elements of the site</li>
-<li>Copy and paste the contents of this file along with <code>style.less</code> to <a href="https://less.pytes.net/">this site</a>, which will convert the less format in to css</li>
-<li>Copy and paste the css format code in to <code>style.min.css</code> and save (you might want to create a back-up of this file first)</li>
-</ul>
-<p>The final step is to add your own picture, Flex will handle the formatting, so just put the image you want to use in <code>C:\Users\Dave\Documents\ipynblog\themes\Flex\static\img</code> and rename it to <code>profile.png</code>. Run Pelican using <code>pelican content</code> and view your blog.</p>
-<p>While this guide isn't exhaustive, it hopefully got you through the process of setting up your blog, and will inspire you to explore some of the other options for customisation such as adding comments, adsense, analytics and translation. Happy blogging!</p>
+<p>With exams over I can finally start concentrating on <del>finding a job</del> posting more to my blog. I have been working on a Sudoku solver and puzzle generator over the past couple of months and was keen to write this up now I have the time, but I felt frustrated that the code wasn't really going to be of use without some form of web based user interface.</p>
+<h3 id="A-Web-Based-Python-UI?">A Web Based Python UI?<a class="anchor-link" href="#A-Web-Based-Python-UI?">&#182;</a></h3><p>After exploring multiple options I'm still not convinced there is an ideal solution that doesn't involve learning Javascript or migrating the site from GitHub. If I'm overlooking something obvious please leave a comment. The best solution I can find is to impliment a degree of interactivity using Jupyter Notebook Widgets, unfortunately this interactivity is lost when converting the notebooks to html using Pelican, so it's still neccessary to link to the file hosted on GitHub. Either way, I'm excited about the potential this functionality offers for some other projects I have in mind for the future.</p>
+<h3 id="Jupyter-Widgets-demo">Jupyter Widgets demo<a class="anchor-link" href="#Jupyter-Widgets-demo">&#182;</a></h3><p><a href="https://mybinder.org/v2/gh/davebloomer/notebooks/master?filepath=jupyter-widgets-demo.ipynb"><img src="https://mybinder.org/badge_logo.svg" alt="Binder"></a></p>
+<p>The notebook contains three demos. The first two build on my post on <a href="visualising-algorithms-python.html#visualising-algorithms-python">visualising sort and search algorithms</a> to create a random colour matrix, and then allow a time slice to be selected on the bubble sorted matrix visualisation. Then lastly, building up to the next post, a method to create and display a Sudoku grid using a simple algorithm.</p>
 
 </div>
 </div>
@@ -1210,8 +1140,6 @@ MENUITEMS = (('Archives', '/archives.html'),)
       <a href="https://davebloomer.github.io/tag/pelican.html">pelican</a>
       <a href="https://davebloomer.github.io/tag/ipynb.html">ipynb</a>
       <a href="https://davebloomer.github.io/tag/jupyter.html">jupyter</a>
-      <a href="https://davebloomer.github.io/tag/git.html">git</a>
-      <a href="https://davebloomer.github.io/tag/anaconda.html">anaconda</a>
     </p>
   </div>
 
