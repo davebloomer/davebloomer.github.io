@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Sandbox</description><lastBuildDate>Tue, 25 Jun 2019 00:00:00 +0100</lastBuildDate><item><title>Python User Interface (Jupyter Widgets)</title><link>https://davebloomer.github.io/jupyter-ui.html</link><description>
+<rss version="2.0"><channel><title>Dave Bloomer - Dave Bloomer</title><link>https://davebloomer.github.io/</link><description>Data Science Sandbox</description><lastBuildDate>Sun, 28 Feb 2021 00:00:00 +0000</lastBuildDate><item><title>Reactive</title><link>https://davebloomer.github.io/reactivate.html</link><description>
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;It's been a while since I've had the chance to post, and that's mostly because I switched from pursuing a career change in to data science, to actually beginning a full-time career (in addition to finishing my Masters degree in Data Science from Birkbeck). However, now that my thesis is handed in, I'm keen to get back to exploring why I became interested in using Python and Data Science to begin with. I've also picked up a new hobby during lockdown, fermenting homemade beer and kombucha, so have started to explore some projects in this space too. Until next time..&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Dave Bloomer</dc:creator><pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate><guid isPermaLink="false">tag:davebloomer.github.io,2021-02-28:/reactivate.html</guid><category>misc</category></item><item><title>Python User Interface (Jupyter Widgets)</title><link>https://davebloomer.github.io/jupyter-ui.html</link><description>
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
